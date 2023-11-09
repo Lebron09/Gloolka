@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developers</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Open-sans', sans-serif;
+      font-style: bold;
+      font-weight: 700;
+      background-color: #000;
+      color: #ccc;
+    }
+
+    .search-input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-button {
+      background-color: #8a77b1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-button:hover {
+      background-color: #0056b3;
+    }
+    
+    .container {
+      margin-top: 50px;
+    }
+
+    h2 {
+      color: #ccc;
+    }
+
+    .list-group-item {
+      background-color: #1a1a1a;
+      border-color: #333;
+      color: #fff;
+    }
+
+    .list-group-item a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn-primary,
+    .btn-danger {
+      border-radius: 25px;
+    }
+
+    .btn-primary {
+      background-color: #8a77b1;
+      border-color: #8a77b1;
+    }
+
+    .btn-danger {
+      background-color: #ff6f61;
+      border-color: #ff6f61;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <%= link_to "CSV export", developers_path(format: :csv), download: ['Developers', Date.today].join(' ') %>
+    <%= form_tag(developers_path, method: :get, class: 'form-group') do %>
+      <label for="search">Search:</label>
+      <%= text_field_tag :search, params[:search], class: 'search-input' %>
+      <%= submit_tag 'Search', class: 'search-button' %>
+    <% end %>
+     <h2>New Developer</h2>
+    <%= render "form", developer: @developer %>
+    <ul class="list-group mt-4">
+      <% @developers.each do |developer| %>
+        <li class="list-group-item">
+          <strong><a href="<%= developer_path(developer) %>"><%= "#{developer.last_name}, #{developer.first_name}" %></a></strong>
+          <%= button_to 'Update', edit_developer_path(developer), method: :get, class: 'btn btn-primary btn-sm float-right' %>
+          <%= button_to 'Delete', developer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm float-right mr-2' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Company Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: #8a77b1;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h2 {
+      color: #8a77b1;
+    }
+
+    .list-group-item {
+      background-color: #1a1a1a;
+      border-color: #333;
+      color: #fff;
+    }
+
+    .list-group-item a {
+      color: #8a77b1;
+      text-decoration: none;
+    }
+
+    .table {
+      width: 50%;
+      margin-top: 20px;
+      color: #ebebeb;
+    }
+
+    th, td {
+      text-align: center;
+    }
+
+    .btn-primary,
+    .btn-danger {
+      border-radius: 25px;
+    }
+
+    .btn-primary {
+      background-color: #8a77b1;
+      border-color: #8a77b1;
+    }
+
+    .btn-danger {
+      background-color: #ff6f61;
+      border-color: #ff6f61;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Company Dashboard</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="<%= developers_path %>" class="btn btn-primary btn-lg btn-block mb-3">Show Developers</a>
+      </div>
+      <div class="col-md-6">
+        <a href="<%= managers_path %>" class="btn btn-primary btn-lg btn-block mb-3">Show Managers</a>
+      </div>
+    </div>
+   <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Report Type</th>
+        <th scope="col">Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Total Developers</td>
+        <td><%= developer_count %></td>
+      </tr>
+      <tr>
+        <td>Total Managers</td>
+        <td><%= manager_count %></td>
+      </tr>
+      <tr>
+        <td>Developers Without Manager</td>
+        <td><%= developers_without_manager_count %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to 'Circle Charts', circle_charts_path, class: 'btn btn-primary' %>
+  <%= link_to 'Bar Charts', bar_charts_path, class: 'btn btn-primary' %>
+
+</div>
+
+</body>
+</html>

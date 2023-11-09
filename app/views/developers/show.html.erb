@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developer Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+  <h1 class="mb-4">Developer Details</h1>
+  <dl class="row">
+    <dt class="col-sm-3">Last Name:</dt>
+    <dd class="col-sm-9"><%= @developer.last_name %></dd>
+    
+    <dt class="col-sm-3">First Name:</dt>
+    <dd class="col-sm-9"><%= @developer.first_name %></dd>
+    
+    <dt class="col-sm-3">Passport ID:</dt>
+    <dd class="col-sm-9"><%= @developer.passport_id %></dd>
+    
+    <dt class="col-sm-3">Address:</dt>
+    <dd class="col-sm-9"><%= @developer.address %></dd>
+    
+    <dt class="col-sm-3">City:</dt>
+    <dd class="col-sm-9"><%= @developer.city %></dd>
+
+    <dt class="col-sm-3">Manager:</dt>
+    <dd class="col-sm-9"><%= @developer.manager&.full_name %></dd>
+  </dl>
+</div>
+  </div>
+</body>
+</html>

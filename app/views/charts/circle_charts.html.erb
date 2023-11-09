@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Company Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+  </style>
+</head>
+<body>
+    
+    <%= pie_chart @chart1 %>
+    <%= pie_chart Developer.group(:city).count %>
+</body>
+</html>

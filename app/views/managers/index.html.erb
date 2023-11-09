@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Managers</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Open-sans', sans-serif;
+      font-style: bold;
+      font-weight: 700;
+      background-color: #000;
+      color: #ccc;
+    }
+
+    .manager-form-container {
+      margin: 20px 0;
+    }
+
+    .manager-form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .manager-label {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .manager-search-input {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .manager-search-button {
+      background-color: #8a77b1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 5px;
+    }
+
+    .manager-search-button:hover {
+      background-color: #0056b3;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    h2 {
+      color: #ccc;
+    }
+
+    .list-group-item {
+      background-color: #1a1a1a;
+      border-color: #333;
+      color: #whitesmoke;
+    }
+
+    .list-group-item a {
+      color: whitesmoke;
+      text-decoration: none;
+    }
+
+    .btn-primary,
+    .btn-danger {
+      border-radius: 25px;
+    }
+
+    .btn-primary {
+      background-color: #8a77b1;
+      border-color: #8a77b1;
+    }
+
+    .btn-danger {
+      background-color: #ff6f61;
+      border-color: #ff6f61;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <%= link_to "CSV export", managers_path(format: :csv), download: ['Managers', Date.today].join(' ') %>
+    <div class="manager-form-container">
+      <%= form_tag(managers_path, method: :get, class: 'manager-form-group') do %>
+        <label class="manager-label" for="search">Search:</label>
+        <%= text_field_tag :search, params[:search], class: 'manager-search-input' %>
+        <%= submit_tag 'Search', class: 'manager-search-button' %>
+      <% end %>
+    </div>
+    <h2>New Manager</h2>
+    <%= render "form", manager: @manager %>
+    <ul class="list-group mt-4">
+      <% @managers.each do |manager| %>
+        <li class="list-group-item">
+          <strong><a href="<%= manager_path(manager) %>"><%= "#{manager.last_name}, #{manager.first_name}" %></a></strong>
+          <%= button_to 'Update', edit_manager_path(manager), method: :get, class: 'btn btn-primary btn-sm float-right' %>
+          <%= button_to 'Delete', manager, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm float-right mr-2' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>

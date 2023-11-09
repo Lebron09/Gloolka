@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manager Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Manager Details</h1>
+    <dl class="row">
+      <dt class="col-sm-3">Last Name:</dt>
+      <dd class="col-sm-9"><%= @manager.last_name %></dd>
+
+      <dt class="col-sm-3">First Name:</dt>
+      <dd class="col-sm-9"><%= @manager.first_name %></dd>
+
+      <dt class="col-sm-3">Passport ID:</dt>
+      <dd class="col-sm-9"><%= @manager.passport_id %></dd>
+
+      <dt class="col-sm-3">Address:</dt>
+      <dd class="col-sm-9"><%= @manager.address %></dd>
+
+      <dt class="col-sm-3">City:</dt>
+      <dd class="col-sm-9"><%= @manager.city %></dd>
+    </dl>
+
+    <h3>Developers:</h3>
+    <ul>
+      <% @manager.developers.each do |developer| %>
+        <li><%= developer.full_name %></li>
+      <% end %>
+    </ul>
+  </div>
+</body>
+</html>
